@@ -51,21 +51,7 @@ section = []
 column = ['Section']
 df = pd.DataFrame(columns=column)
 
-for course in no_syllabus:
-    i = 0
-    cutup = course.split()
-    print(cutup)
-    for word in cutup:
-        i = i + 1
-        print(i)
-        if word == "LEC)":
-            section = cutup[i-2]
-            print(section)
-            section1 = section[1:]
-            length = len(df)
-            df.loc[length] = section1
-print(df)
-df.to_csv('E:/Work/Division/Syllabi1.csv')
+
 
 
 
