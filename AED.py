@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import re
 import pandas as pd
-driver = webdriver.Chrome("C:/Users/family/PycharmProjects/chromedriver.exe")
+driver = webdriver.Chrome("C:/Users/53674/PycharmProjects/chromedriver.exe")
 driver.get('https://secure.cerritos.edu/rosters/login.cgi')
 login = driver.find_element_by_name('login')
 login.send_keys('gvasquez')
@@ -92,7 +92,7 @@ def rosters(start,finish):
             driver.back()
             driver.back()
         print(df)
-        df.to_csv('E:/Work/Division/IWPA_Raw_Data' + str(z) +'.csv')
+        df.to_csv('C:/Users/53674/Desktop/Spreadsheets/IWPA_Raw_Data' + str(z) +'.csv')
         section_list = []
         for i in range(len(df)):
             if df.loc[i,'Section'] not in section_list:
@@ -124,9 +124,10 @@ def rosters(start,finish):
             length = len(df_sections)
             df_sections.loc[length] = section_hours
     print(df_sections)
-    df_sections.to_csv('E:/Work/Division/IWPA_Section_Totals' + str(z) +'.csv')
+    df_sections.to_csv('C:/Users/53674/Desktop/Spreadsheets/IWPA_Section_Totals' + str(z) +'.csv')
+
 z = 1
-select_session(4)
+select_session(5)
 rosters(1, 100)
 select_session(3)
 rosters(1, 100)
