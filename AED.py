@@ -24,7 +24,22 @@ df = pd.DataFrame(columns=headers)
 pd.set_option('display.max_columns', None)
 
 def select_session(y):
-    drop_down = driver.find_element_by_xpath('/html/body/table[2]/tbody/tr/td[2]/form[1]/p/select/option['+str(y)+']').click()
+    page_source = driver.page_source
+    soup = BeautifulSoup(page_source, 'lxml')
+
+    table = soup.find('select', {'onchange': 'New_Term(this.form)', 'name': 'term_code'})
+    print(table)
+    # table = soup.find('/html/body/table[2]/tbody/tr/td[2]/form[1]/p/select')
+    option_table = table.find_all('option')
+
+    print(option_table)
+    for i in range(len(option_table)):
+        print(option_table[i].text)
+        semester = option_table[i].text
+        if semester == '2020 Fall':
+            y = i + 1
+            print(f'y = {i + 1}')
+            drop_down = driver.find_element_by_xpath('/html/body/table[2]/tbody/tr/td[2]/form[1]/p/select/option['+str(y)+']').click()
 
 def rosters(start,finish):
     for i in range(start, finish):
@@ -109,10 +124,13 @@ def rosters(start,finish):
                 if section == df.loc[i,'Section']:
                     course3 = df.loc[i, 'Course']
                     hours = df.loc[i,'Hours']
-                    print(hours)
+                    print('df', hours)
                     hours = hours.split()
-                    print(hours)
+                    print('split', hours)
                     hours = hours[0]
+                    print('[0]', hours)
+                    if hours == 'hours':
+                        hours = 0
                     print(hours)
                     hours = float(hours)
                     print(hours)
