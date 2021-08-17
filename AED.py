@@ -20,7 +20,7 @@ class SelectSession(object):
     def select_session(self):
 
         global tr_table
-        page_source = self.driver
+        page_source = driver.page_source
         soup = BeautifulSoup(page_source, 'lxml')
 
         table = soup.find('select', {'onchange': 'New_Term(this.form)', 'name': 'term_code'})
