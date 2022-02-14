@@ -13,7 +13,7 @@ class SelectSection:
 
     def selection_process(self, i):
 
-        def completion_date_formatting():
+        def _completion_date_formatting():
             button2 = self.driver.find_element_by_xpath(
                 '//*[@id="clform"]/table/tbody/tr[' + str(i) + ']/td[1]/input').click()
             # This waits until roster open to run
@@ -24,7 +24,7 @@ class SelectSection:
             course_date_split = course_date.split()
             return course_date_split
 
-        def section_number_formatting():
+        def _section_number_formatting():
             global section_and_course
             course = self.driver.find_element_by_xpath(
                 '/html/body/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td[3]').text
@@ -45,7 +45,7 @@ class SelectSection:
             course_date = None
             pass
         else:
-            course_date_split = completion_date_formatting()
+            course_date_split = _completion_date_formatting()
             P1_eligible_months = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             P2_eligible_months = ['Jan', 'Feb', 'Mar', 'Apr']
             P3_eligible_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
@@ -58,13 +58,13 @@ class SelectSection:
                 eligible = P3_eligible_months
 
             if course_date_split[9] in eligible:
-                section, course = section_number_formatting()
+                section, course = _section_number_formatting()
                 course_date = course_date_split[9]
             elif course_date_split[10] in eligible:
-                section, course = section_number_formatting()
+                section, course = _section_number_formatting()
                 course_date = course_date_split[10]
             elif course_date_split[11] in eligible:
-                section, course = section_number_formatting()
+                section, course = _section_number_formatting()
                 course_date = course_date_split[11]
             else:
                 self.driver.back()
