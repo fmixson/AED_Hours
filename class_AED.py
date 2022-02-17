@@ -46,7 +46,7 @@ driver.get('https://secure.cerritos.edu/rosters/login.cgi')
 login = driver.find_element_by_name('login')
 login.send_keys('gvasquez')
 login = driver.find_element_by_name('passwd')
-login.send_keys('Celestino80!')
+login.send_keys('Frankie2929Lee!')
 button = driver.find_element_by_xpath('//*[@id="login_form"]/table/tbody/tr[3]/td[2]/input').click()
 # This waits for list of courses to load
 element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'clform')))
@@ -54,7 +54,7 @@ element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,
 # df = pd.DataFrame(columns=headers)
 pd.set_option('display.max_columns', None)
 p_period = input("For what period would you like totals, P1, P2, P3, or Grand Total? ")
-if p_period == "P3":
+if p_period == "P1":
     year = input("Please provide the P1 year,e.g. 2020: ")
     calculate_apprecticeship_hours(year=year, semester='Summer')
     calculate_apprecticeship_hours(year=year, semester='Fall')
