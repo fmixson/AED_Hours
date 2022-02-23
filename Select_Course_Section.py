@@ -22,6 +22,8 @@ class SelectSection:
             course_date = self.driver.find_element_by_xpath(
                 '/html/body/table/tbody/tr/td[2]/table[2]/tbody/tr[4]/td[3]').text
             course_date_split = course_date.split()
+            print('course date', course_date)
+            print('split', course_date_split)
             return course_date_split
 
         def _section_number_formatting():
