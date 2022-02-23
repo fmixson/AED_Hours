@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 
 import pandas as pd
 
@@ -41,13 +42,14 @@ def calculate_apprecticeship_hours(year, semester):
         t.total_section_hours()
 
 
-driver = webdriver.Chrome("C:/Users/fmixson/PycharmProjects/chromedriver.exe")
+# driver = webdriver.Chrome("C:/Users/fmixson/PycharmProjects/chromedriver.exe")
+driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get('https://secure.cerritos.edu/rosters/login.cgi')
 login = driver.find_element_by_name('login')
 login.send_keys('gvasquez')
 login = driver.find_element_by_name('passwd')
 login.send_keys('Frankie2929Lee!')
-button = driver.find_element_by_xpath('//*[@id="login_form"]/table/tbody/tr[3]/td[2]/input').click()
+button = driver.find_element(By.XPATH, '//*[@id="login_form"]/table/tbody/tr[3]/td[2]/input').click()
 # This waits for list of courses to load
 element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'clform')))
 # headers = ['NO', 'Name', 'ID', 'Grade', 'Hours', 'Other', 'Section', 'Course']
